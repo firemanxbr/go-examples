@@ -1,2 +1,2 @@
 # go-examples
-My golang examples
+golang examples
