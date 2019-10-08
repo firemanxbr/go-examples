@@ -6,6 +6,9 @@ import (
 	"strconv"
 )
 
+// UNITS Maps between units
+var UNITS = map[string]string{"celsius": "fahrenheit", "kilometers": "miles"}
+
 func main() {
 	if len(os.Args) < 3 {
 		fmt.Println("Use: converter <value> <unit>")
@@ -15,13 +18,8 @@ func main() {
 	unitArg := os.Args[len(os.Args)-1]
 	valueArg := os.Args[1 : len(os.Args)-1]
 
-	var unitTo string
-
-	if unitArg == "celsius" {
-		unitTo = "fahrenheit"
-	} else if unitArg == "kilometers" {
-		unitTo = "miles"
-	} else {
+	unitTo, exists := UNITS[unitArg]
+	if !exists {
 		fmt.Printf("%s unit don't exist!", unitArg)
 		os.Exit(1)
 	}
